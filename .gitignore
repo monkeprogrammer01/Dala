@@ -1,8 +1,8 @@
 # Python
 __pycache__/
 *.pyc
-venv/
-
+.venvnv/
+.idea/
 # Django
 *.sqlite3
 
