@@ -1,0 +1,174 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
+
+.nation-card {
+    padding: 40px;
+    background: linear-gradient(45deg, #ff6f61, #ffbc00);
+    color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 1000px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .nation-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .nation-header h1 {
+    font-size: 3rem;
+    color: #fff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  }
+  
+  .nation-slug {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .image-container {
+    height: 70vh;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .zoom-image {
+    object-fit: cover;
+    width: 90vw;
+    height: 90vh;
+    transition: width 0.3s ease-out, height 0.3s ease-out, filter 0.3s ease-out;
+    border-radius: 10%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  h2 {
+    font-size: 2.2rem;
+    color: #f5f5f5;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 40px;
+  }
+  
+  p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-top: 10px;
+  }
+  
+  /* Подсветка текста с эффектом */
+  p:hover {
+    color: #ff6f61;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  
+  @media (max-width: 768px) {
+    .nation-header h1 {
+      font-size: 2.5rem;
+    }
+  
+    h2 {
+      font-size: 1.8rem;
+    }
+  
+    p {
+      font-size: 1rem;
+    }
+  
+    .image-container {
+      height: 50vh;
+    }
+  
+    .zoom-image {
+      width: 100vw;
+      height: 100vh;
+    }
+  }
+  
+  /* Анимации и параллакс */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .nation-description, .nation-history, .nation-culture, .nation-language, .nation-religion, .nation-population {
+    animation: fadeIn 1s ease-in-out;
+    margin: 20px 0;
+    padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+  }
+  
+  .loading {
+    text-align: center;
+    font-size: 2rem;
+    color: #ffbc00;
+    font-weight: bold;
+  }
+  
+  .nation-title {
+    font-family: 'Pacifico', cursive;
+    font-size: 3rem;
+    text-align: center;
+    margin-top: 40px;
+    color: #222;
+    letter-spacing: 1px;
+  }
+  
+  .ai-question-section {
+    padding: 2rem;
+    /* background-color: #f9f9f9; */
+    border-top: 1px solid #ccc;
+    margin-top: 2rem;
+  }
+  
+  .ai-input {
+    padding: 10px;
+    width: 70%;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin-right: 10px;
+  }
+  
+  .ai-button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  .ai-answer {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-left: 4px solid #0077cc;
+  }
+  
+  .btn-success {
+    width: auto;
+    height: 50px;
+    font-size: 20px;
+    background-color: #28a745;
+    border-color: #28a745;
+    border-radius: 8px;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
