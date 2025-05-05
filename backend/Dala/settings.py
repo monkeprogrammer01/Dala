@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-getjqn#k3(%9!+uj%cg1((s3%d4_pk3i9i%3ti*hj-5$p5=9q!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "http://localhost:5173", "http://127.0.0.1:5173", "postgre-db.onrender.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "http://localhost:5173", "http://127.0.0.1:5173", "dala-1.onrender.com"]
 
 
 # Application definition
