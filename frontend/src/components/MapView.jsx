@@ -1,7 +1,6 @@
 import {React, useState, useEffect} from "react";
 import { MapContainer, TileLayer, Tooltip, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
-import FolksMainImage from "./FolksMainImage.jsx"
 import "../styles/MapView.css"
 import {useNavigate} from "react-router-dom"
 
@@ -15,7 +14,7 @@ function MapView() {
         // const apiUrl = process.env.REACT_APP_API_URL;
         const getNationData = async() => {
             try {
-                const response = await fetch(`http://localhost:8000/api/nation/`)
+              const response = await fetch(`http://localhost:8000/api/nation/`)
                 if (!response.ok) {
                     throw new Error("Network error")
                 }
@@ -29,27 +28,15 @@ function MapView() {
         getNationData();
 
     }, [])
-    const nationsPosition = [
-        {
-            name: "Казахи",
-            description: "Крупнейший тюркский народ Казахстана.",
-            position: [48.0, 67.0],
-            image_url: "https://www.jimmynelson.com/wp-content/uploads/2022/08/XXX_5___Meruert__Kazakh___Sagsai__Bayan-____lgii_province___Mongolia___2017-2-819x1024.jpg" 
-        },
-        {
-           name: 'Якуты',
-           description: 'Народ, проживающий в Республике Саха (Якутия).',
-           position: [62.0, 129.0],
-           image_url: "https://www.jimmynelson.com/wp-content/uploads/2022/08/XXX_5___Meruert__Kazakh___Sagsai__Bayan-____lgii_province___Mongolia___2017-2-819x1024.jpg" 
-        },
-    ]
+   
     const handleClickOnNation = (imageUrl) => {
         setSelectedImageUrl(imageUrl);
         setShowImage(true);
     }
 
   return <>
-    <MapContainer center={[48.0196, 66.9237]} zoom={5} style={{ height: "80vh", width: "80%", borderRadius: "2%" }}>
+    <div className="map-wrapper">
+                <MapContainer center={[48.0196, 66.9237]} zoom={5} style={{ height: "80vh", width: "80%", borderRadius: "2%" }}>
         <TileLayer
         url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
         />
@@ -69,13 +56,12 @@ function MapView() {
             >
                 <Tooltip permanent direction="center" offset={[0, 0]} opacity={1}>
                     <a 
-                    href="#" 
                     onClick={(e) => {
                         e.preventDefault();
                         setSelectedImageUrl(nation.image_url);
                         setShowImage(true);
                     }}
-                    style={{ textDecoration: "none", color: "black" }}
+                    style={{ textDecoration: "none", color: "black", backgroundColor: "white" }}
                     >
 
                     <span style={{ fontWeight: 'bold', fontSize: '16px' }}>{nation.name}</span>
@@ -85,6 +71,7 @@ function MapView() {
         ))}
 
     </MapContainer>
+    <h3>Кликните на народ чтобы узнать больше</h3>
     {showImage && (
     <div 
         style={{
@@ -147,7 +134,7 @@ function MapView() {
             />
             <h3>Готовы исследовать мир этого народа?</h3>
             <button 
-                onClick={() => navigate(`${selectedNation}`)} 
+                onClick={() => navigate(`/${selectedNation}`)} 
                 style={{
                     padding: "18px 36px",
                     backgroundColor: "#f1c40f", 
@@ -178,6 +165,9 @@ function MapView() {
         </div>
     </div>
 )}
+    </div>
+
+
 
   </>;
 }

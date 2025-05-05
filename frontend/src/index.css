@@ -31,9 +31,8 @@ body {
   min-height: 100vh;
 }
 
-.MapView {
+.App {
   margin-left: 80px;
-  margin-top: 5%;
   place-items: center;
 }
 

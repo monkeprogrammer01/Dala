@@ -1,6 +1,7 @@
 from django.contrib import admin
-from nation.models import Nation, NationImage
+from nation.models import Nation, NationImage, Status, Suggestion
 
-# Register your models here.
 admin.site.register(Nation)
 admin.site.register(NationImage)
+admin.site.register(Status)
+admin.site.register(Suggestion)

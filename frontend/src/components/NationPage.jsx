@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "../styles/NationPage.css";
 
 function NationPage() {
@@ -31,6 +31,10 @@ function NationPage() {
   }, []);
 
   useEffect(() => {
+    window.scrollTo(0,0);
+  }, [slug])
+
+  useEffect(() => {
     const getNationData = async () => {
       try {
         const response = await fetch(
@@ -47,6 +51,8 @@ function NationPage() {
     };
     getNationData();
   }, [slug]);
+
+
 
   if (!nation) return <div className="loading">Loading...</div>;
   const askAI = async (userQuestion) => {
@@ -79,7 +85,7 @@ function NationPage() {
   };
   return (
     <>
-      <div className="nation-card">
+      <div className="nation">
         <header className="nation-header">
           <h1 className="nation-title">{nation.name}</h1>
         </header>
@@ -140,7 +146,7 @@ function NationPage() {
 
         <section className="nation-population">
           <h2>Численность</h2>
-          <p>{Number(nation.population).toLocaleString("ru-RU")}</p>
+          <p>{Number(nation.population).toLocaleString("ru-RU")} человек</p>
         </section>
 
         <section className="ai-question-section">
@@ -171,8 +177,12 @@ function NationPage() {
             </div>
           )}
         </section>
-        <button className="btn-success">Следующий народ</button>
-      </div>
+        <div className="next-nation">
+          <Link to={`/${nation.nextSlug}`} className="next-nation-link">
+            <span className="arrow">→</span> Следующий народ
+          </Link>
+        </div>
+        </div>
     </>
   );
 }
