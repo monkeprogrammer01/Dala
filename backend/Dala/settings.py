@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/4.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 import os
 from dotenv import load_dotenv
@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-getjqn#k3(%9!+uj%cg1((s3%d4_pk3i9i%3ti*hj-5$p5=9q!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "http://localhost:5173", "http://127.0.0.1:5173"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "http://localhost:5173", "http://127.0.0.1:5173", "postgre-db.onrender.com"]
 
 
 # Application definition
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
@@ -69,8 +70,8 @@ CORS_ALLOW_METHODS = [
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
-    "http://127.0.0.1:5173"
-]
+    "http://127.0.0.1:5173",
+    "https://dala-phi.vercel.app"]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -100,17 +101,21 @@ WSGI_APPLICATION = 'Dala.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 load_dotenv()
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv("DB_NAME"),
-        'USER': os.getenv("DB_USER"),
-        'PASSWORD': os.getenv("DB_PASSWORD"),
-        'HOST': os.getenv("DB_HOST"),
-        'PORT': os.getenv("DB_PORT"),
-    }
+    'default': dj_database_url.config(
+        default=os.getenv("INTERNAL_DATABASE_URL")
+    )
 }
 
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': os.getenv("DB_NAME"),
+#         'USER': os.getenv("DB_USER"),
+#         'PASSWORD': os.getenv("DB_PASSWORD"),
+#         'HOST': os.getenv("DB_HOST"),
+#         'PORT': os.getenv("DB_PORT"),
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -147,9 +152,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = 'static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
