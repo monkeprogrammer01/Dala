@@ -13,6 +13,7 @@ import dj_database_url
 from pathlib import Path
 import os
 from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -22,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-getjqn#k3(%9!+uj%cg1((s3%d4_pk3i9i%3ti*hj-5$p5=9q!'
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -71,7 +72,9 @@ CORS_ALLOW_METHODS = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://dala-phi.vercel.app"]
+    "https://dala-phi.vercel.app",
+    "https://dala-git-main-monkeprogrammer01s-projects.vercel.app/"
+]
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -99,7 +102,6 @@ WSGI_APPLICATION = 'Dala.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-load_dotenv()
 DATABASES = {
     'default': dj_database_url.config(
         default=os.getenv("INTERNAL_DATABASE_URL")
