@@ -3,6 +3,7 @@ import "../styles/AddNationForm.css";
 
 function AddNationForm() {
   const [suggestion, setSuggestion] = useState("");
+  const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,7 +13,7 @@ function AddNationForm() {
     }
 
     try {
-      const response = await fetch("http://localhost:8000/api/nation/add", {
+      const response = await fetch(`${apiUrl}/api/nation/add`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

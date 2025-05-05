@@ -6,10 +6,12 @@ function MainPage() {
   const navigate = useNavigate();
   const [nations, setNations] = useState([]);
   const [searchTerm, setSearchTerm] = useState("")
+  const apiUrl = import.meta.env.VITE_APP_API_URL;
+
   useEffect(() => {
     const fetchNations = async () => {
       try {
-        const response = await fetch("http://localhost:8000/api/nation");
+        const response = await fetch(`${apiUrl}/api/nation`);
         if (!response.ok) {
           throw new Error("Fetch error");
         }
@@ -52,7 +54,7 @@ function MainPage() {
       key={nation.slug}
       onClick={() => navigate(`/${nation.slug}`)}
       style={{
-        backgroundImage: `url(http://localhost:8000${nation.images[0]?.image})`,
+        backgroundImage: `url(${apiUrl}${nation.images[0]?.image})`,
       }}
     >
       <div className="overlay">

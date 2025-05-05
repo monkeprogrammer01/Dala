@@ -7,6 +7,7 @@ function NationPage() {
   const { slug } = useParams();
   const [loading, setLoading] = useState(false);
   const [aiAnswer, setAiAnswer] = useState();
+  const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   const [question, setQuestion] = useState("");
   useEffect(() => {
@@ -38,7 +39,7 @@ function NationPage() {
     const getNationData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:8000/api/nation/${slug}`
+          `${apiUrl}/api/nation/${slug}`
         );
         if (!response.ok) {
           throw new Error("Network error");
@@ -58,7 +59,7 @@ function NationPage() {
   const askAI = async (userQuestion) => {
     try {
       setLoading(true);
-      const response = await fetch("http://localhost:8000/api/ask", {
+      const response = await fetch(`${apiUrl}/api/ask`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -93,7 +94,7 @@ function NationPage() {
         {nation.images[0] && (
           <div className="image-container">
             <img
-              src={`http://localhost:8000${nation.images[0].image}`}
+              src={`${apiUrl}${nation.images[0].image}`}
               className="zoom-image"
               alt={nation.name}
             />
@@ -113,7 +114,7 @@ function NationPage() {
         {nation.images[1] && (
           <div className="image-container">
             <img
-              src={`http://localhost:8000${nation.images[1].image}`}
+              src={`${apiUrl}${nation.images[1].image}`}
               className="zoom-image"
               alt={nation.name}
             />
@@ -133,7 +134,7 @@ function NationPage() {
         {nation.images[2] && (
           <div className="image-container">
             <img
-              src={`http://localhost:8000${nation.images[2].image}`}
+              src={`${apiUrl}${nation.images[2].image}`}
               className="zoom-image"
               alt={nation.name}
             />

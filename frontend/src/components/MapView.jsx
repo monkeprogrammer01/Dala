@@ -10,11 +10,12 @@ function MapView() {
     const [showImage, setShowImage] = useState(false);
     const [nations, setNations] = useState();
     const navigate = useNavigate();
+    const apiUrl = import.meta.env.VITE_APP_API_URL;
+
     useEffect(() => {
-        // const apiUrl = process.env.REACT_APP_API_URL;
         const getNationData = async() => {
             try {
-              const response = await fetch(`http://localhost:8000/api/nation/`)
+              const response = await fetch(`${apiUrl}/api/nation/`)
                 if (!response.ok) {
                     throw new Error("Network error")
                 }
@@ -36,7 +37,7 @@ function MapView() {
 
   return <>
     <div className="map-wrapper">
-                <MapContainer center={[48.0196, 66.9237]} zoom={5} style={{ height: "80vh", width: "80%", borderRadius: "2%" }}>
+                <MapContainer center={[48.0196, 66.9237]} zoom={2} style={{ height: "80vh", width: "80%", borderRadius: "2%" }}>
         <TileLayer
         url="https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png"
         />
@@ -47,7 +48,7 @@ function MapView() {
                 radius={50000}
                 eventHandlers={{
                     click: () => {
-                      setSelectedImageUrl(`http://localhost:8000${nation.images[0].image}`);
+                      setSelectedImageUrl(`${apiUrl}${nation.images[0].image}`);
                       setSelectedNation(nation.slug)
                       setShowImage(true);
                     }
