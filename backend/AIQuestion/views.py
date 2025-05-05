@@ -18,7 +18,7 @@ class AIChatView(APIView):
 
         headers = {
             "Content-Type": "application/json",
-            "Authorization": f"Bearer {os.getenv("AI_SECURITY_KEY")}",
+            "Authorization": f"Bearer {os.getenv('AI_SECURITY_KEY')}",
 
         }
         data = {
